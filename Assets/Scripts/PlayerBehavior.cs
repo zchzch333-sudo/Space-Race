@@ -4,11 +4,16 @@ public class PlayerBehavior : MonoBehaviour
 {
     private InputAction upButton;
     private InputAction downButton;
+
+    AudioSource MyCdPlayer;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         upButton = InputSystem.actions.FindAction("up");
         downButton = InputSystem.actions.FindAction("down");
+
+        MyCdPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,5 +31,10 @@ public class PlayerBehavior : MonoBehaviour
             Debug.Log("Go down");
         }
         transform.position = playerPosition;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        MyCdPlayer.Play();
+        Debug.Log("Touched");
     }
 }
